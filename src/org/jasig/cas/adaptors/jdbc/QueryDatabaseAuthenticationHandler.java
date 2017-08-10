@@ -46,7 +46,10 @@ public class QueryDatabaseAuthenticationHandler extends AbstractJdbcUsernamePass
         final String password = credentials.getPassword();
         try {
             final String plainPassword = getJdbcTemplate().queryForObject(this.sql, String.class, username);
-            return   PasswordHelper.validatePassword(plainPassword, password);
+            
+            System.out.println(plainPassword);
+            
+            return   PasswordHelper.validatePassword(password, plainPassword);
         } catch (final IncorrectResultSizeDataAccessException e) {
             // this means the username was not found.
             return false;

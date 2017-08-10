@@ -38,17 +38,14 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:sec="http://www.springframework.org/schema/security"
+       
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+ 	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
-	<!--
-		| This bean declares our AuthenticationManager.  The CentralAuthenticationService service bean
-		| declared in applicationContext.xml picks up this AuthenticationManager by reference to its id, 
-		| "authenticationManager".  Most deployers will be able to use the default AuthenticationManager
-		| implementation and so do not need to change the class of this bean.  We include the whole
-		| AuthenticationManager here in the userConfigContext.xml so that you can see the things you will
-		| need to change in context.
-		+-->
+
+	
+
 	<bean id="authenticationManager"
 		class="org.jasig.cas.authentication.AuthenticationManagerImpl">
 		
@@ -117,7 +114,7 @@
 					| a server side SSL certificate.
 					+-->
 				<bean class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
-					p:httpClient-ref="httpClient" />
+					p:httpClient-ref="httpClient" p:requireSecure="false"/>
 				<!--
 					| This is the authentication handler declaration that every CAS deployer will need to change before deploying CAS 
 					| into production.  The default SimpleTestUsernamePasswordAuthenticationHandler authenticates UsernamePasswordCredentials
@@ -125,12 +122,56 @@
 					| local authentication strategy.  You might accomplish this by coding a new such handler and declaring
 					| edu.someschool.its.cas.MySpecialHandler here, or you might use one of the handlers provided in the adaptors modules.
 					+-->
+				<!-- 
 				<bean 
 					class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
+				 -->
+
+			<bean class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler">
+				<property name="dataSource" ref="dataSource"></property>
+				<property name="sql"
+					value="select password from sys_user where login_name=?"></property>
+			</bean>
 			</list>
 		</property>
 	</bean>
 
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> 
+	    <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
+	    <property name="driverClassName" value="${jdbc.driver}" />
+	    
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${jdbc.pool.init}" />
+		<property name="minIdle" value="${jdbc.pool.minIdle}" /> 
+		<property name="maxActive" value="${jdbc.pool.maxActive}" />
+		
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		
+		<property name="validationQuery" value="${jdbc.testSql}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小（Oracle使用）
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" /> -->
+		
+		<!-- 配置监控统计拦截的filters -->
+	    <property name="filters" value="stat" /> 
+	</bean>
 
 	<!--
 	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.
