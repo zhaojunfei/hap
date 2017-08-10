@@ -1,10 +1,15 @@
 package org.jasig.cas.util;
-
-import com.thinkgem.jeesite.common.security.Digests;
-import com.thinkgem.jeesite.common.utils.Encodes;
-
+/**
+ * 主要针对密码操作,验证密码相关信息。密
+ * @author Team
+ *
+ */
 public class PasswordHelper {
-
+	
+	public static final String HASH_ALGORITHM = "SHA-1";
+	public static final int HASH_INTERATIONS = 1024;
+	public static final int SALT_SIZE = 8;
+	
 	public static String entryptPassword(String plainPassword) {
 		String plain = Encodes.unescapeHtml(plainPassword);
 		byte[] salt = Digests.generateSalt(SALT_SIZE);
