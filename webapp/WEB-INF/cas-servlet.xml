@@ -79,6 +79,7 @@
       class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
     <property name="mappings">
       <props>
+      	<prop key="/registerLogin">registerLoginController</prop>
         <prop key="/logout">logoutController</prop>
         <prop key="/serviceValidate">serviceValidateController</prop>
         <prop key="/validate">legacyValidateController</prop>
@@ -108,6 +109,10 @@
      </property>
       -->
   </bean>
+
+	<bean id="registerLoginController" class="org.jasig.cas.web.RegisterAfterLoginController"
+		p:centralAuthenticationService-ref="centralAuthenticationService"
+		p:ticketGrantingTicketCookieGenerator-ref="ticketGrantingTicketCookieGenerator" />
 
   <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
 
