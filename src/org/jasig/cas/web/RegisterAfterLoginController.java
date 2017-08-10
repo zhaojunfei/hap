@@ -30,6 +30,7 @@ public class RegisterAfterLoginController extends AbstractController
         ModelAndView signinView=new ModelAndView();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String group=request.getParameter("group");
         bindTicketGrantingTicket(username, password, request, response);
         String viewName=getSignInView(request);
         signinView.setViewName(getSignInView(request));
