@@ -33,7 +33,7 @@
   <meta name="version" content="<%=org.jasig.cas.CasVersion.getVersion()%>" />
   <link rel="icon" href="<c:url value="../favicon.ico" />" type="image/x-icon" />
   <link rel="stylesheet" href="<c:url value="/css/style.css" />" type="text/css" />
-    <script type="text/javascript" src="<c:url value="/js/cas.jquery.min.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/js/jquery.min.js" />"></script>
     <script type="text/javascript" src="<c:url value="/js/jquery-ui.min.js" />"></script>
   <script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
   <script type="text/javascript" src="<c:url value="/js/MyInfusion.js" />"></script>

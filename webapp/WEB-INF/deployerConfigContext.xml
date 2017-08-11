@@ -110,6 +110,16 @@
 	    <property name="filters" value="stat" /> 
 	</bean>
 
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+            <property name = "dataSource" ref="dataSource"/>  
+    </bean>  
+    <bean id="userService" class="org.jasig.cas.service.UserService">  
+         <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+    </bean>  
+
+
+
 	<!--
 	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.
 	More robust deployments will want to use another option, such as the Jdbc version.

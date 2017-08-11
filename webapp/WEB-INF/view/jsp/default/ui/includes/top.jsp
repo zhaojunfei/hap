@@ -29,7 +29,7 @@
 <spring:theme code="mobile.custom.css.file" var="mobileCss" text="" />
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
-	    <title>CAS &#8211; Central Authentication Service</title>
+	    <title>Login in &#8211;<spring:message code="cas.global.name" /></title>
         <c:if test="${not empty requestScope['isMobile'] and not empty mobileCss}">
              <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
              <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,6 +42,21 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="${customCssFile}" />" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	    <link rel="icon" href="<c:url value="/favicon.ico" />" type="image/x-icon" />
+	    
+	  <link rel="stylesheet" type="text/css" href="css/default_style.css" />  
+    <script type="text/javascript" src="<c:url value="/js/jquery.min.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/js/jquery-ui.min.js" />"></script>
+<script src="<c:url value="js/custom.js" />"></script>
+<script src="<c:url value="js/selectnav.js" />"></script>
+<script src="<c:url value="js/fancybox.js" />"></script>
+<style>
+		.picture{height:180px; overflow:hidden; border:solid 1px #eee;}
+		.pagination{text-align:center; margin:20px 0;}
+		.item-description h5 a{font-size:14px;}
+		.blog-meta{clear:both; line-height:25px; color:#333;}
+		p{word-wrap:break-word;line-height: 20px;margin: 0 0 15px;}
+		.tm_istop{position:absolute; top:0px; right:0; width:32px; height:32px; background:url('images/top.png');}
+	</style>
 	</head>
 	<body id="cas" class="fl-theme-iphone">
     <div class="flc-screenNavigator-view-container">
