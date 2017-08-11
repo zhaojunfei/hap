@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jasig.cas.CentralAuthenticationService;
 import org.jasig.cas.authentication.principal.UsernamePasswordCredentials;
+import org.jasig.cas.service.UserService;
 import org.jasig.cas.ticket.TicketException;
 import org.jasig.cas.web.support.CookieRetrievingCookieGenerator;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -23,6 +24,7 @@ public class RegisterAfterLoginController extends AbstractController
 
     private CentralAuthenticationService centralAuthenticationService;
     private CookieRetrievingCookieGenerator  ticketGrantingTicketCookieGenerator;
+    private UserService userService;
     
     protected ModelAndView handleRequestInternal(HttpServletRequest request,
             HttpServletResponse response) throws Exception
@@ -92,4 +94,9 @@ public class RegisterAfterLoginController extends AbstractController
         this.ticketGrantingTicketCookieGenerator = ticketGrantingTicketCookieGenerator;
     }
 
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+    
 }

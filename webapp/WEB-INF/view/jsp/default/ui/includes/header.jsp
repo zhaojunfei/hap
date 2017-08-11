@@ -32,8 +32,8 @@
   <title><spring:message code="${pageTitle}" text="Logged Out" /></title>
   <meta name="version" content="<%=org.jasig.cas.CasVersion.getVersion()%>" />
   <link rel="icon" href="<c:url value="../favicon.ico" />" type="image/x-icon" />
-  <link rel="stylesheet" href="<c:url value="/css/services/cas.css" />" type="text/css" />
-<script type="text/javascript" src="<c:url value="/js/cas.jquery.min.js" />"></script>
+  <link rel="stylesheet" href="<c:url value="/css/style.css" />" type="text/css" />
+    <script type="text/javascript" src="<c:url value="/js/cas.jquery.min.js" />"></script>
     <script type="text/javascript" src="<c:url value="/js/jquery-ui.min.js" />"></script>
   <script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
   <script type="text/javascript" src="<c:url value="/js/MyInfusion.js" />"></script>
@@ -46,24 +46,15 @@
   }
   </style>
 </head>
-
-<body id="${pageTitle}-body">
-<div id="header">
-  <div id="nav-system">
-    <ul
-      ><li><a href="logout.html" title="logout of current session"><spring:message code="management.services.link.logout" /></a></li
-    ></ul>
-  </div>
-  <p id="tagline"><spring:message code="application.title" /></p>
-  <h1 id="app-name"><spring:message code="management.services.title" /></h1>
-</div>
-<div id="nav-main">
-  <ul
-    ><li><a id="addServiceView" href="add.html"><span><spring:message code="addServiceView" /></span></a></li
-    ><li><a id="manageServiceView" href="manage.html"><span><spring:message code="manageServiceView" /></span></a></li
-    ><li><a id="viewStatisticsView" href="viewStatistics.html"><span><spring:message code="viewStatisticsView" /></span></a></li
-  ></ul>
-</div>
-<!-- CONTENT -->
-<div id="content">
-  <h1><spring:message code="${pageTitle}" text="Logged Out" /></h1>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Paper Stack</title>
+</head>
+<body>
+<div class="container">
+	<section id="content">
