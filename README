@@ -1,0 +1,2 @@
+<bean id="springContextHelper" class="org.jasig.cas.client.filter.SpringContextHelper"></bean>
+代码入侵方式管理

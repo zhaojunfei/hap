@@ -1,7 +1,6 @@
 package org.jasig.cas.client.filter;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.authentication.DefaultGatewayResolverImpl;
 import org.jasig.cas.client.authentication.GatewayResolver;
 import org.jasig.cas.client.util.AbstractCasFilter;
@@ -100,8 +98,6 @@ public class AuthenticationFilter extends AbstractCasFilter{
         final Assertion assertion = session != null ? (Assertion) session.getAttribute(CONST_CAS_ASSERTION) : null;  
 
         
-
-        
         // 该判断是自定义的对符合条件的url进行通过处理 ---3  
         if(isExclude(request.getRequestURI())){  
             filterChain.doFilter(request, response);  
@@ -109,13 +105,7 @@ public class AuthenticationFilter extends AbstractCasFilter{
         }  
           
         if (assertion != null) {  
-        	AttributePrincipal principal = (AttributePrincipal) request.getUserPrincipal();  
-            if(principal!=null){
-            	Map<String, Object> attributes = principal.getAttributes();  
-                for (String key : attributes.keySet()) {  
-                    System.out.println(key + "/" + attributes.get(key));  
-                }  
-            }
+        	
             filterChain.doFilter(request, response);  
             return;  
         }  

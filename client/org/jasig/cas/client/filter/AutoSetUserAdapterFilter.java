@@ -30,11 +30,29 @@ public class AutoSetUserAdapterFilter implements Filter {
         final Assertion assertion = session != null ? (Assertion) session.getAttribute(org.jasig.cas.client.util.AbstractCasFilter.CONST_CAS_ASSERTION) : null;  
         org.jasig.cas.client.authentication.AttributePrincipal principal = (org.jasig.cas.client.authentication.AttributePrincipal) request.getUserPrincipal();
 
-        java.util.Map<String,Object> attributes =principal.getAttributes();
-        if(attributes!=null){
-        	 String email=attributes.get("email").toString();
-        	 System.out.println(email);
-        }
+		java.util.Map<String, Object> attributes = principal.getAttributes();
+		if (attributes != null) {
+//			String email = attributes.get("email").toString();
+//			String sessionid = BaseUtil.generateRandomString(20);
+//			String uid = "898cefdf-d372-410d-b5d5-332e71b43e64";
+//			String roleId = "7e33ecad-b7c5-4b93-a4ff-b13f12a067be";
+//			session.setAttribute(Constants.SESSION_USERID, uid);
+//			session.setAttribute(Constants.SESSION_USERNAME, "admin");
+//			session.setAttribute(Constants.SESSION_USERTYPE, "1");
+//			session.setAttribute(Constants.SESSION_USERGID, roleId);
+//			session.setAttribute(Constants.SESSION_SESSID, sessionid);
+//			session.setAttribute(Constants.SESSION_USERSTATUS, "1");
+//
+//			CacheHelper.addCache("SessionCache", "U" + uid, sessionid);
+//
+//			IAdminRoleService adminRoleService = (IAdminRoleService) SpringContextHelper.getBean("AdminRoleService");
+//
+//			Map<String, Object> map = adminRoleService.getAdminRole(roleId);
+//			String roleid = String.valueOf(map.get("r_id"));
+//			String privilege = String.valueOf(map.get("r_privilege"));
+//			CacheHelper.addCache("RoleCache", "R" + roleid, "," + privilege);
+
+		}
         filterChain.doFilter(request, response);
 	}
 
